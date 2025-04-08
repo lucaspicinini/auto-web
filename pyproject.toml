@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "auto_web"
+name = "auto-web"
 version = "0.1.0"
 description = "Automation tool for Rexpeita operations"
 authors = ["Lucas Picinini <137008535+lucaspicinini@users.noreply.github.com>"]

@@ -19,6 +19,8 @@ class Order():
     neighborhood: str
     postcode: str
     city: str
+    service_code: str
+    service: str
 
     def __init__(
         self, driver: WebDriver, user_token: str | None, order_id: str
@@ -82,6 +84,7 @@ class Order():
             .find_element(By.ID, "input-shipping-city")\
             .get_attribute("value")
         self.set_city(city_input)
+        self.set_service()
 
     def set_fullname(self) -> None:
         if self.firstname is None:
@@ -136,6 +139,14 @@ class Order():
         if city_input is None:
             city_input = ""
         self.city = city_input.strip()
+
+    def set_service(self) -> None:
+        if self.city.lower() == config.SENDER_CITY:
+            self.service_code = config.CORREIOS_SEDEX
+            self.service = "SEDEX Reverso"
+        else:
+            self.service_code = config.CORREIOS_PAC
+            self.service = "PAC Reverso"
 
     def __str__(self) -> str:
         parts = []

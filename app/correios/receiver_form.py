@@ -26,10 +26,7 @@ class ReceiverForm():
             By.CSS_SELECTOR, 'select[name="servico"]'
         )
         service_select = Select(service_element)
-        if order.city.lower() == config.SENDER_CITY:
-            service_select.select_by_value(config.CORREIOS_SEDEX)
-        else:
-            service_select.select_by_value(config.CORREIOS_PAC)
+        service_select.select_by_value(order.service_code)
         postcode_input = self.driver.find_element(By.NAME, "cepOrigem")
         postcode_input.send_keys(order.postcode)
         postcode_confirm = self.driver.find_element(
